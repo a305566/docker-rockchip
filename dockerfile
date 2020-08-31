@@ -105,16 +105,13 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     update-locale LANG=en_US.UTF-8
 
 ADD ./overlay/  /
-## rag
-RUN mkdir -p /usr/include/rga/
-RUN cp packages/arm64/rga/include/* /usr/include/rga/
-RUN cp packages/arm64/rga/lib/librga.so  /usr/lib/
 
 RUN echo "Update Headers!"
+RUN dpkg -i /packages/arm64/rga/*.deb
 RUN dpkg -i /packages/arm64/mpp/*.deb
-RUN dpkg -i /packages/arm64/gstreamer/*.deb
-RUN dpkg -i /packages/arm64/libmali/*.deb
-RUN dpkg -i /packages/arm64/qt/*.deb
+RUN dpkg -i /packages/arm64/gst-rkmpp/*.deb
+RUN dpkg -i /packages/arm64/ffmpeg/*.deb
+RUN dpkg -i /packages/arm64/libmali/libmali-midgard-t86x-r18p0-x11*.deb
 RUN find /packages/arm64/libdrm -name '*.deb' | sudo xargs -I{} dpkg -x {} /
 
 RUN apt-get update && apt-get install -y -f
