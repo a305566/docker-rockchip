@@ -110,7 +110,7 @@ RUN echo "Update Headers!"
 RUN dpkg -i /packages/arm64/rga/*.deb
 RUN dpkg -i /packages/arm64/mpp/*.deb
 RUN dpkg -i /packages/arm64/gst-rkmpp/*.deb
-RUN dpkg -i /packages/arm64/ffmpeg/*.deb
+#RUN dpkg -i /packages/arm64/ffmpeg/*.deb
 RUN dpkg -i /packages/arm64/libmali/libmali-midgard-t86x-r18p0-x11*.deb
 RUN find /packages/arm64/libdrm -name '*.deb' | sudo xargs -I{} dpkg -x {} /
 
